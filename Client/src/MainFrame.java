@@ -6,7 +6,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
@@ -87,7 +87,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         lookupLabel.setText("Personal Computer Lookup:");
 
-        searchButton.setText("Search");
+        searchButton.setText("Personal Computer Search");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchButtonActionPerformed(evt);
@@ -116,16 +116,15 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(cpuButton)
                             .addComponent(quickLabel))))
                 .addGap(47, 47, 47)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pcTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lookupLabel)
-                    .addComponent(searchButton)
-                    .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(mainPanelLayout.createSequentialGroup()
-                            .addComponent(adminButton)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(exitButton))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                        .addComponent(adminButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(exitButton))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(pcTextField)
+                    .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
@@ -175,44 +174,44 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void cpuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpuButtonActionPerformed
+    private void cpuButtonActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
-    }//GEN-LAST:event_cpuButtonActionPerformed
+    }                                         
 
-    private void gpuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gpuButtonActionPerformed
+    private void gpuButtonActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
-    }//GEN-LAST:event_gpuButtonActionPerformed
+    }                                         
 
-    private void ramButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ramButtonActionPerformed
+    private void ramButtonActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
-    }//GEN-LAST:event_ramButtonActionPerformed
+    }                                         
 
-    private void motherboardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motherboardButtonActionPerformed
+    private void motherboardButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                  
         // TODO add your handling code here:
-    }//GEN-LAST:event_motherboardButtonActionPerformed
+    }                                                 
 
-    private void storageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storageButtonActionPerformed
+    private void storageButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
-    }//GEN-LAST:event_storageButtonActionPerformed
+    }                                             
 
-    private void psuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_psuButtonActionPerformed
+    private void psuButtonActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
-    }//GEN-LAST:event_psuButtonActionPerformed
+    }                                         
 
-    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchButtonActionPerformed
+    }                                            
 
-    private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminButtonActionPerformed
+    private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-    }//GEN-LAST:event_adminButtonActionPerformed
+    }                                           
 
-    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
         dispose();
-    }//GEN-LAST:event_exitButtonActionPerformed
+    }                                          
 
     /**
      * @param args the command line arguments
@@ -249,7 +248,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton adminButton;
     private javax.swing.JButton cpuButton;
     private javax.swing.JButton exitButton;
@@ -265,5 +264,5 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton ramButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JButton storageButton;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }
