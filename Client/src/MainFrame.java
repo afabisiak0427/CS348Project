@@ -1,5 +1,13 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MainFrame extends javax.swing.JFrame {
+
+    public static Connection conn = null;
 
     public MainFrame() {
         initComponents();
@@ -9,76 +17,82 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        mainPanel = new javax.swing.JPanel();
-        cpuButton = new javax.swing.JButton();
-        gpuButton = new javax.swing.JButton();
-        ramButton = new javax.swing.JButton();
-        storageButton = new javax.swing.JButton();
-        motherboardButton = new javax.swing.JButton();
-        psuButton = new javax.swing.JButton();
-        exitButton = new javax.swing.JButton();
-        adminButton = new javax.swing.JButton();
-        quickLabel = new javax.swing.JLabel();
-        lookupLabel = new javax.swing.JLabel();
-        pcTextField = new javax.swing.JTextField();
-        searchButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        pcOutputTextArea = new javax.swing.JTextArea();
+        mainPanel = new JPanel();
+        cpuButton = new JButton();
+        gpuButton = new JButton();
+        ramButton = new JButton();
+        storageButton = new JButton();
+        motherboardButton = new JButton();
+        psuButton = new JButton();
+        exitButton = new JButton();
+        adminButton = new JButton();
+        quickLabel = new JLabel();
+        lookupLabel = new JLabel();
+        pcTextField = new JTextField();
+        searchButton = new JButton();
+        jScrollPane1 = new JScrollPane();
+        pcOutputTextArea = new JTextArea();
+        addPersonalButton = new JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         cpuButton.setText("CPU Parts");
-        cpuButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cpuButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 cpuButtonActionPerformed(evt);
             }
         });
 
         gpuButton.setText("GPU Parts");
-        gpuButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        gpuButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 gpuButtonActionPerformed(evt);
             }
         });
 
         ramButton.setText("RAM Parts");
-        ramButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        ramButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 ramButtonActionPerformed(evt);
             }
         });
 
         storageButton.setText("Storage Parts");
-        storageButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        storageButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 storageButtonActionPerformed(evt);
             }
         });
 
         motherboardButton.setText("Motherboard Parts");
-        motherboardButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        motherboardButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 motherboardButtonActionPerformed(evt);
             }
         });
 
         psuButton.setText("PSU Parts");
-        psuButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        psuButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 psuButtonActionPerformed(evt);
             }
         });
 
+        addPersonalButton.setText("Add New PC");
+        addPersonalButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) { addPCButtonActionPerformed(evt); }
+        });
+
         exitButton.setText("Exit");
-        exitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        exitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 exitButtonActionPerformed(evt);
             }
         });
 
         adminButton.setText("Admin");
-        adminButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        adminButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 adminButtonActionPerformed(evt);
             }
         });
@@ -88,120 +102,362 @@ public class MainFrame extends javax.swing.JFrame {
         lookupLabel.setText("Personal Computer Lookup:");
 
         searchButton.setText("Personal Computer Search");
-        searchButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        searchButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 searchButtonActionPerformed(evt);
             }
         });
 
         pcOutputTextArea.setColumns(20);
-        pcOutputTextArea.setRows(5);
+        pcOutputTextArea.setRows(6);
         jScrollPane1.setViewportView(pcOutputTextArea);
 
-        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+        GroupLayout mainPanelLayout = new GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+            mainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(gpuButton)
                     .addComponent(psuButton)
                     .addComponent(storageButton)
                     .addComponent(ramButton)
                     .addComponent(motherboardButton)
+                    .addComponent(addPersonalButton)
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(mainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addComponent(cpuButton)
                             .addComponent(quickLabel))))
                 .addGap(47, 47, 47)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(mainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                     .addComponent(lookupLabel)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                    .addGroup(GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                         .addComponent(adminButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(exitButton))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(pcTextField)
-                    .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
+                    .addComponent(searchButton, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            mainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(quickLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(mainPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(quickLabel, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
                     .addComponent(lookupLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(mainPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(cpuButton)
-                    .addComponent(pcTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pcTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(mainPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(gpuButton)
                     .addComponent(searchButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(mainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addComponent(ramButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(motherboardButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(storageButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(psuButton))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(psuButton)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(addPersonalButton))
+                    .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(mainPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(adminButton)
                     .addComponent(exitButton))
                 .addGap(27, 27, 27))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(mainPanel, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(mainPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>                        
 
-    private void cpuButtonActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
+    public void addPCButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a name: ");
+        String name = sc.nextLine();
+
+        String query1 = "INSERT INTO personal_pcs (name) VALUES (\"" + name + "\");";
+
+        try {
+            PreparedStatement pt1 = conn.prepareStatement(query1);
+
+            int affectedRows = pt1.executeUpdate();
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        }
+    }
+
+    private void cpuButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter * to display all, or search a name with a string: ");
+        String search = sc.nextLine();
+
+        String query1;
+        String line;
+
+        if (search.compareTo("*") == 0) {
+            query1 = "SELECT * FROM cpu;";
+        }
+        else {
+            query1 = "SELECT * FROM cpu WHERE name LIKE \"%" + search + "%\";";
+        }
+
+        try {
+            PreparedStatement pt1 = conn.prepareStatement(query1);
+            ArrayList<String> ar = new ArrayList<>();
+
+            ResultSet rs = pt1.executeQuery();
+            while (rs.next()) {
+                line = rs.getString(1) + ", " + rs.getString(2) + ", " + rs.getString(3) + ", " + rs.getString(4) + ", " +
+                        rs.getString(5) + ", " + rs.getString(6);
+                ar.add(line);
+            }
+
+            System.out.println("Name\tBrand\tGeneration\tCores\tThreads\tPrice");
+            for (String s : ar) {
+                System.out.println(s);
+            }
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        }
+    }
+
+    private void gpuButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter * to display all, or search a name with a string: ");
+        String search = sc.nextLine();
+
+        String query1;
+        String line;
+
+        if (search.compareTo("*") == 0) {
+            query1 = "SELECT * FROM gpu;";
+        }
+        else {
+            query1 = "SELECT * FROM gpu WHERE name LIKE \"%" + search + "%\";";
+        }
+
+        try {
+            PreparedStatement pt1 = conn.prepareStatement(query1);
+            ArrayList<String> ar = new ArrayList<>();
+
+            ResultSet rs = pt1.executeQuery();
+            while (rs.next()) {
+                line = rs.getString(1) + ", " + rs.getString(2) + ", " + rs.getString(3) + ", " + rs.getString(4) + ", " +
+                        rs.getString(5) + ", " + rs.getString(6);
+                ar.add(line);
+            }
+
+            System.out.println("Name\tBrand\tGeneration\tCores\tMemory\tPrice");
+            for (String s : ar) {
+                System.out.println(s);
+            }
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        }
     }                                         
 
-    private void gpuButtonActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
+    private void ramButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter * to display all, or search a name with a string: ");
+        String search = sc.nextLine();
+
+        String query1;
+        String line;
+
+        if (search.compareTo("*") == 0) {
+            query1 = "SELECT * FROM ram;";
+        }
+        else {
+            query1 = "SELECT * FROM ram WHERE name LIKE \"%" + search + "%\";";
+        }
+
+        try {
+            PreparedStatement pt1 = conn.prepareStatement(query1);
+            ArrayList<String> ar = new ArrayList<>();
+
+            ResultSet rs = pt1.executeQuery();
+            while (rs.next()) {
+                line = rs.getString(1) + ", " + rs.getString(2) + ", " + rs.getString(3) + ", " + rs.getString(4) + ", " +
+                        rs.getString(5) + ", " + rs.getString(6);
+                ar.add(line);
+            }
+
+            System.out.println("Name\tBrand\tMemory amt\t# of sticks\tSpeed\tPrice");
+            for (String s : ar) {
+                System.out.println(s);
+            }
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        }
     }                                         
 
-    private void ramButtonActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
-    }                                         
+    private void motherboardButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        Scanner sc = new Scanner(System.in);
 
-    private void motherboardButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        // TODO add your handling code here:
+        System.out.println("Enter * to display all, or search a name with a string: ");
+        String search = sc.nextLine();
+
+        String query1;
+        String line;
+
+        if (search.compareTo("*") == 0) {
+            query1 = "SELECT * FROM motherboard;";
+        }
+        else {
+            query1 = "SELECT * FROM motherboard WHERE name LIKE \"%" + search + "%\";";
+        }
+
+        try {
+            PreparedStatement pt1 = conn.prepareStatement(query1);
+            ArrayList<String> ar = new ArrayList<>();
+
+            ResultSet rs = pt1.executeQuery();
+            while (rs.next()) {
+                line = rs.getString(1) + ", " + rs.getString(2) + ", " + rs.getString(3) + ", " + rs.getString(4) + ", " +
+                        rs.getString(5) + ", " + rs.getString(6) + ", " + rs.getString(7);
+                ar.add(line);
+            }
+
+            System.out.println("Name\tBrand\tSize\t# of PCI Slots\t# of RAM slots\tCPU Generation\tPrice");
+            for (String s : ar) {
+                System.out.println(s);
+            }
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        }
     }                                                 
 
-    private void storageButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
+    private void storageButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter * to display all, or search a name with a string: ");
+        String search = sc.nextLine();
+
+        String query1;
+        String line;
+
+        if (search.compareTo("*") == 0) {
+            query1 = "SELECT * FROM storage;";
+        }
+        else {
+            query1 = "SELECT * FROM storage WHERE name LIKE \"%" + search + "%\";";
+        }
+
+        try {
+            PreparedStatement pt1 = conn.prepareStatement(query1);
+            ArrayList<String> ar = new ArrayList<>();
+
+            ResultSet rs = pt1.executeQuery();
+            while (rs.next()) {
+                line = rs.getString(1) + ", " + rs.getString(2) + ", " + rs.getString(3) + ", " + rs.getString(4) + ", " +
+                        rs.getString(5);
+                ar.add(line);
+            }
+
+            System.out.println("Name\tBrand\tType\tSize (gb)\tPrice");
+            for (String s : ar) {
+                System.out.println(s);
+            }
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        }
     }                                             
 
-    private void psuButtonActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
+    private void psuButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter * to display all, or search a name with a string: ");
+        String search = sc.nextLine();
+
+        String query1;
+        String line;
+
+        if (search.compareTo("*") == 0) {
+            query1 = "SELECT * FROM psu;";
+        }
+        else {
+            query1 = "SELECT * FROM psu WHERE name LIKE \"%" + search + "%\";";
+        }
+
+        try {
+            PreparedStatement pt1 = conn.prepareStatement(query1);
+            ArrayList<String> ar = new ArrayList<>();
+
+            ResultSet rs = pt1.executeQuery();
+            while (rs.next()) {
+                line = rs.getString(1) + ", " + rs.getString(2) + ", " + rs.getString(3) + ", " + rs.getString(4) + ", " +
+                        rs.getString(5);
+                ar.add(line);
+            }
+
+            System.out.println("Name\tBrand\tWatts\tColor\tPrice");
+            for (String s : ar) {
+                System.out.println(s);
+            }
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        }
     }                                         
 
-    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        // TODO add your handling code here:
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter * to display all, or search a name with a string: ");
+        String search = sc.nextLine();
+
+        String query1;
+        String line;
+
+        if (search.compareTo("*") == 0) {
+            query1 = "SELECT * FROM personal_pcs;";
+        }
+        else {
+            query1 = "SELECT * FROM personal_pcs WHERE name LIKE \"%" + search + "%\";";
+        }
+
+        try {
+            PreparedStatement pt1 = conn.prepareStatement(query1);
+            ArrayList<String> ar = new ArrayList<>();
+
+            ResultSet rs = pt1.executeQuery();
+            while (rs.next()) {
+                line = rs.getString(1);
+                ar.add(line);
+            }
+
+            System.out.println("Name");
+            for (String s : ar) {
+                System.out.println(s);
+            }
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        }
     }                                            
 
     private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
@@ -210,7 +466,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-        dispose();
+        System.exit(0);
     }                                          
 
     /**
@@ -240,6 +496,15 @@ public class MainFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        try {
+            String url = "jdbc:sqlite:PurduePartPicker.db";
+            conn = DriverManager.getConnection(url);
+
+            System.out.println("Got it!");
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        }
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -264,5 +529,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton ramButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JButton storageButton;
+    private javax.swing.JButton addPersonalButton;
     // End of variables declaration                   
 }

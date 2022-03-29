@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:sqlite:C:\Users\jiahao\Documents\GitHub\CS348Project\PurduePartPicker.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="PurduePartPicker [2]" uuid="8c2aef6f-1998-4079-a679-487e3d5e0bcc">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:E:\My Doc's\School Stuff\CS 30700\CS348Project\PurduePartPicker.db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
