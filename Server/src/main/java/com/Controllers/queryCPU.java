@@ -4,6 +4,8 @@ import com.Brand.BrandDataHandler;
 import com.CPU.CPU;
 import com.CPU.CPUDataHandler;
 import com.CPU.CPURepository;
+import com.Personal_PC.Personal_PC;
+import com.Personal_PC.Personal_PCDataHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,8 @@ public class queryCPU {
     CPUDataHandler cpuHandler;
     @Autowired
     BrandDataHandler brandHandler;
+    @Autowired
+    Personal_PCDataHandler pcHandler;
 
     @GetMapping
     @CrossOrigin(origins = "*")
@@ -46,6 +50,10 @@ public class queryCPU {
 /*        List<CPU> regCPU = cpuHandler.findCPU("name");
 
         System.out.println(regCPU.toString());*/
+
+/*        Personal_PC np = new Personal_PC("TestPC");
+        pcHandler.savePC(np);
+        System.out.println("Done");*/
 
         return ResponseEntity.ok(HttpStatus.OK);
     }

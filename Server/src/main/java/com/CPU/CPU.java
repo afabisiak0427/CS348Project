@@ -11,63 +11,63 @@ public class CPU {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String Name;
-    private Integer Brand_id;
-    private int Generation;
-    private int Cores_number;
-    private int Threads_number;
-    private int Price;
+    private String name;
+    private Integer brand_id;
+    private int generation;
+    private int cores_number;
+    private int threads_number;
+    private int price;
 
     public Integer getId() { return id; }
 
     public void setId(Integer id) { this.id = id; }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
-    public void setName(String name) { this.Name = name; }
+    public void setName(String name) { this.name = name; }
 
     public Integer getBrand_id() {
-        return Brand_id;
+        return brand_id;
     }
 
-    public void setBrand(Integer brand_id) { this.Brand_id = brand_id; }
+    public void setBrand(Integer brand_id) { this.brand_id = brand_id; }
 
     public int getGeneration() {
-        return Generation;
+        return generation;
     }
 
-    public void setGeneration(Integer gen) { this.Generation = gen; }
+    public void setGeneration(Integer gen) { this.generation = gen; }
 
     public int getCores_number() {
-        return Cores_number;
+        return cores_number;
     }
 
-    public void setCores_number(int cores) { this.Cores_number = cores; }
+    public void setCores_number(int cores) { this.cores_number = cores; }
 
     public int getThreads_number() {
-        return Threads_number;
+        return threads_number;
     }
 
-    public void setThreads_number(int threads) { this.Threads_number = threads; }
+    public void setThreads_number(int threads) { this.threads_number = threads; }
 
     public int getPrice() {
-        return Price;
+        return price;
     }
 
-    public void setPrice(int price) { this.Price = price; }
+    public void setPrice(int price) { this.price = price; }
 
     @Override
     public String toString() {
         return "CPU{" +
                 "id=" + id +
-                ", Name='" + Name + '\'' +
-                ", Brand_id=" + Brand_id +
-                ", Generation=" + Generation +
-                ", Cores_number=" + Cores_number +
-                ", Threads_number=" + Threads_number +
-                ", Price=" + Price +
+                ", Name='" + name + '\'' +
+                ", Brand_id=" + brand_id +
+                ", Generation=" + generation +
+                ", Cores_number=" + cores_number +
+                ", Threads_number=" + threads_number +
+                ", Price=" + price +
                 '}';
     }
 }

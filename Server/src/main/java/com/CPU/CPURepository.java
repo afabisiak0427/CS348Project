@@ -12,5 +12,5 @@ import java.util.Optional;
 @Repository
 public interface CPURepository extends JpaRepository<CPU, Integer> {
     List<CPU> findAll();
-    List<CPU> findCPUByName(String regex);
+    List<CPU> findCPUSByName(String name);
 }

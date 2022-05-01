@@ -11,14 +11,20 @@ public class Personal_PC {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String Name;
-    private Integer CPU_id;
-    private Integer GPU_id;
-    private Integer RAM_id;
-    private Integer Motherboard_id;
-    private Integer Storage_id;
-    private Integer PSU_id;
-    private int Total_price;
+    private String name;
+    private Integer cpu_id;
+    private Integer gpu_id;
+    private Integer ram_id;
+    private Integer motherboard_id;
+    private Integer storage_id;
+    private Integer psu_id;
+    private int total_price;
+
+    public Personal_PC() {}
+
+    public Personal_PC(String name) {
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;
@@ -29,66 +35,66 @@ public class Personal_PC {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
-    public Integer getCPU_id() {
-        return CPU_id;
+    public Integer getCpu_id() {
+        return cpu_id;
     }
 
-    public void setCPU_id(Integer CPU_id) {
-        this.CPU_id = CPU_id;
+    public void setCpu_id(Integer cpu_id) {
+        this.cpu_id = cpu_id;
     }
 
-    public Integer getGPU_id() {
-        return GPU_id;
+    public Integer getGpu_id() {
+        return gpu_id;
     }
 
-    public void setGPU_id(Integer GPU_id) {
-        this.GPU_id = GPU_id;
+    public void setGpu_id(Integer gpu_id) {
+        this.gpu_id = gpu_id;
     }
 
-    public Integer getRAM_id() {
-        return RAM_id;
+    public Integer getRam_id() {
+        return ram_id;
     }
 
-    public void setRAM_id(Integer RAM_id) {
-        this.RAM_id = RAM_id;
+    public void setRam_id(Integer ram_id) {
+        this.ram_id = ram_id;
     }
 
     public Integer getMotherboard_id() {
-        return Motherboard_id;
+        return motherboard_id;
     }
 
     public void setMotherboard_id(Integer motherboard_id) {
-        Motherboard_id = motherboard_id;
+        this.motherboard_id = motherboard_id;
     }
 
     public Integer getStorage_id() {
-        return Storage_id;
+        return storage_id;
     }
 
     public void setStorage_id(Integer storage_id) {
-        Storage_id = storage_id;
+        this.storage_id = storage_id;
     }
 
-    public Integer getPSU_id() {
-        return PSU_id;
+    public Integer getPsu_id() {
+        return psu_id;
     }
 
-    public void setPSU_id(Integer PSU_id) {
-        this.PSU_id = PSU_id;
+    public void setPsu_id(Integer psu_id) {
+        this.psu_id = psu_id;
     }
 
     public int getTotal_price() {
-        return Total_price;
+        return total_price;
     }
 
     public void setTotal_price(int total_price) {
-        Total_price = total_price;
+        this.total_price = total_price;
     }
 }
