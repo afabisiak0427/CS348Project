@@ -57,4 +57,17 @@ public class CPU {
     }
 
     public void setPrice(int price) { this.Price = price; }
+
+    @Override
+    public String toString() {
+        return "CPU{" +
+                "id=" + id +
+                ", Name='" + Name + '\'' +
+                ", Brand_id=" + Brand_id +
+                ", Generation=" + Generation +
+                ", Cores_number=" + Cores_number +
+                ", Threads_number=" + Threads_number +
+                ", Price=" + Price +
+                '}';
+    }
 }
