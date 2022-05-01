@@ -12,13 +12,17 @@ import java.awt.event.WindowEvent;
  * @author glass
  */
 public class gpu_lookup extends javax.swing.JFrame {
+    private String[][] names;
 
     /**
      * Creates new form gpu_lookup
      */
-    public gpu_lookup() {
+    public gpu_lookup(String[][] names) {
+        this.names = names;
         initComponents();
     }
+
+    public gpu_lookup() { initComponents(); }
 
     public void close() {
         WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
@@ -48,15 +52,10 @@ public class gpu_lookup extends javax.swing.JFrame {
 
         gpuTable.setAutoCreateRowSorter(true);
         gpuTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
+                this.names,
+                new String [] {
+                        "id", "name", "brand_id", "cores_number", "Memory", "Price ($)"
+                }
         ));
         jScrollPane1.setViewportView(gpuTable);
 
