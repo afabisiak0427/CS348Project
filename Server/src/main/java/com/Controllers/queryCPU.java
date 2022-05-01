@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
@@ -30,31 +27,32 @@ public class queryCPU {
     @Autowired
     Personal_PCDataHandler pcHandler;
 
-    @GetMapping
+    @PostMapping
     @CrossOrigin(origins = "*")
     @ResponseBody
-    public ResponseEntity getAllCPUs() {
-/*        List<CPU> cpuList = cpuHandler.findAll();
-        ArrayList<String> retList = new ArrayList<>();
+    public ResponseEntity getAllCPUs(@RequestBody String s) {
+        String ret = "";
+        List<CPU> cpuList = null;
 
-        for (CPU c : cpuList) {
-            retList.add(c.getName() + ", " + brandHandler.getById(c.getBrand_id()).getName() + ", " +
-                    c.getGeneration() + ", " + c.getCores_number() + ", " + c.getThreads_number() + ", " +
-                    c.getPrice());
+        System.out.println("Request: " + s);
+
+        if (s.compareTo("All") == 0) {
+            cpuList = cpuHandler.findAll();
+        }
+        else {
+            cpuList = cpuHandler.findCPU(s);
         }
 
-        for (String s : retList) {
-            System.out.println(s);
-        }*/
+        if (cpuList.size() == 0) {
+            return ResponseEntity.ok("Error: No CPUs could be found.");
+        }
 
-/*        List<CPU> regCPU = cpuHandler.findCPU("name");
+        for (CPU c : cpuList) {
+            ret += c.getName() + ", " + brandHandler.getById(c.getBrand_id()).getName() + ", " +
+                    c.getGeneration() + ", " + c.getCores_number() + ", " + c.getThreads_number() + ", " +
+                    c.getPrice() + ";";
+        }
 
-        System.out.println(regCPU.toString());*/
-
-/*        Personal_PC np = new Personal_PC("TestPC");
-        pcHandler.savePC(np);
-        System.out.println("Done");*/
-
-        return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseEntity.ok(ret.toString());
     }
 }

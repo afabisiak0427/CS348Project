@@ -1,6 +1,7 @@
 
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -12,11 +13,14 @@ import java.awt.event.WindowEvent;
  * @author glass
  */
 public class cpu_lookup extends javax.swing.JFrame {
+    private String[][] names;
 
-
-    public cpu_lookup() {
+    public cpu_lookup(String[][] names) {
+        this.names = names;
         initComponents();
     }
+
+    public cpu_lookup() { initComponents(); }
     
     public void close() {
         WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
@@ -55,14 +59,9 @@ public class cpu_lookup extends javax.swing.JFrame {
 
         cpuTable.setAutoCreateRowSorter(true);
         cpuTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
+            this.names,
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Name", "Brand", "Generation", "Cores", "Threads", "Price ($)"
             }
         ));
         jScrollPane1.setViewportView(cpuTable);

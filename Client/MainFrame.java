@@ -1,5 +1,16 @@
+import org.springframework.web.bind.annotation.RestController;
+
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.ArrayList;
 
 public class MainFrame extends javax.swing.JFrame {
 
@@ -183,8 +194,47 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void cpuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpuButtonActionPerformed
         // TODO add your handling code here:
+        String[] lines = null;
+
+        try {
+            URL url = new URL("http://localhost:8080/queryCPU");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setDoOutput(true);
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setUseCaches(false);
+
+            try (DataOutputStream dos = new DataOutputStream(conn.getOutputStream())) {
+                dos.writeBytes("All");
+            }
+
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    lines = line.split(";");
+                }
+            }
+        } catch (MalformedURLException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        for (String s : lines) {
+            System.out.println(s);
+        }
+
+        int size = lines.length;
+
+        String[][] result = new String[size][];
+        int count = 0;
+        for (String st : lines) {
+            result[count] = st.split(",");
+            ++count;
+        }
+
         close();
-        cpu_lookup newPart = new cpu_lookup();
+        cpu_lookup newPart = new cpu_lookup(result);
         newPart.setVisible(true);
     }//GEN-LAST:event_cpuButtonActionPerformed
 
@@ -225,6 +275,32 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
+        String text = pcTextField.getText();
+
+        try {
+            URL url = new URL("http://localhost:8080/queryPC");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setDoOutput(true);
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setUseCaches(false);
+
+            try (DataOutputStream dos = new DataOutputStream(conn.getOutputStream())) {
+                dos.writeBytes(text);
+            }
+
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    System.out.println(line);
+                }
+            }
+        } catch (MalformedURLException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
