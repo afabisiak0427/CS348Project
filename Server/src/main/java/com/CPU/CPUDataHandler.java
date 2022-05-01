@@ -18,4 +18,5 @@ public class CPUDataHandler {
     public List<CPU> findAll() {
         return cpuRepository.findAll();
     }
+    public List<CPU> findCPU(String name) { return cpuRepository.findCPUByName(name); }
 }

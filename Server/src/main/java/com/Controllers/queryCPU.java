@@ -30,7 +30,7 @@ public class queryCPU {
     @CrossOrigin(origins = "*")
     @ResponseBody
     public ResponseEntity getAllCPUs() {
-        List<CPU> cpuList = cpuHandler.findAll();
+/*        List<CPU> cpuList = cpuHandler.findAll();
         ArrayList<String> retList = new ArrayList<>();
 
         for (CPU c : cpuList) {
@@ -41,7 +41,11 @@ public class queryCPU {
 
         for (String s : retList) {
             System.out.println(s);
-        }
+        }*/
+
+/*        List<CPU> regCPU = cpuHandler.findCPU("name");
+
+        System.out.println(regCPU.toString());*/
 
         return ResponseEntity.ok(HttpStatus.OK);
     }
