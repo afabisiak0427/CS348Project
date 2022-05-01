@@ -14,6 +14,7 @@ public class Motherboard {
     private String Name;
     private Integer Brand_id;
     private int Size;
+    private int Pci_slots;
     private int RAM_slots;
     private String CPU_Generation;
     private int Price;
@@ -72,5 +73,13 @@ public class Motherboard {
 
     public void setPrice(int price) {
         Price = price;
+    }
+
+    public int getPci_slots() {
+        return Pci_slots;
+    }
+
+    public void setPci_slots(int pci_slots) {
+        Pci_slots = pci_slots;
     }
 }
