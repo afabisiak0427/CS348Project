@@ -11,11 +11,11 @@ public class GPU {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String Name;
-    private Integer Brand_id;
-    private int Cores_number;
-    private int Memory;
-    private int Price;
+    private String name;
+    private Integer brand_id;
+    private int cores_number;
+    private int memory;
+    private int price;
 
     public Integer getId() {
         return id;
@@ -26,42 +26,42 @@ public class GPU {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        name = name;
     }
 
     public int getCores_number() {
-        return Cores_number;
+        return cores_number;
     }
 
     public void setCores_number(int cores_number) {
-        Cores_number = cores_number;
+        cores_number = cores_number;
     }
 
     public int getMemory() {
-        return Memory;
+        return memory;
     }
 
     public void setMemory(int memory) {
-        Memory = memory;
+        memory = memory;
     }
 
     public int getPrice() {
-        return Price;
+        return price;
     }
 
     public void setPrice(int price) {
-        Price = price;
+        price = price;
     }
 
     public Integer getBrand_id() {
-        return Brand_id;
+        return brand_id;
     }
 
     public void setBrand_id(Integer brand_id) {
-        Brand_id = brand_id;
+        brand_id = brand_id;
     }
 }

@@ -31,6 +31,17 @@ public class queryPC {
                 retString += pc.getName() + ", ";
             }
         }
+        else {
+            ret = pcHandler.getPCbyName(s);
+            if (ret.isEmpty()) {
+                return ResponseEntity.ok("No PC's with this name.");
+            }
+            else {
+                for (Personal_PC pc : ret) {
+                    retString += pc.getName() + ", ";
+                }
+            }
+        }
 
         return ResponseEntity.ok(retString);
     }
