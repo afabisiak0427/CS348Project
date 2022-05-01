@@ -342,6 +342,10 @@ public class MainFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_exitButtonActionPerformed
 
+    private void newPCButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
     /**
      * @param args the command line arguments
      */
