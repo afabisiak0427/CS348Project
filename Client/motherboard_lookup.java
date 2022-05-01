@@ -55,6 +55,7 @@ public class motherboard_lookup extends javax.swing.JFrame {
 
         addButton.setText("Add Part To PC");
 
+        motherboardTable.setAutoCreateRowSorter(true);
         motherboardTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

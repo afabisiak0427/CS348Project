@@ -55,6 +55,7 @@ public class psu_lookup extends javax.swing.JFrame {
 
         addButton.setText("Add Part To PC");
 
+        psuTable.setAutoCreateRowSorter(true);
         psuTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

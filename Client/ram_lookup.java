@@ -55,6 +55,7 @@ public class ram_lookup extends javax.swing.JFrame {
 
         addButton.setText("Add Part To PC");
 
+        ramTable.setAutoCreateRowSorter(true);
         ramTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

@@ -46,6 +46,7 @@ public class gpu_lookup extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("GPU Parts");
 
+        gpuTable.setAutoCreateRowSorter(true);
         gpuTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

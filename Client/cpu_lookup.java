@@ -53,6 +53,7 @@ public class cpu_lookup extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CPU Parts");
 
+        cpuTable.setAutoCreateRowSorter(true);
         cpuTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

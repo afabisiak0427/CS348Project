@@ -55,6 +55,7 @@ public class storage_lookup extends javax.swing.JFrame {
 
         addButton.setText("Add Part To PC");
 
+        storageTable.setAutoCreateRowSorter(true);
         storageTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
