@@ -21,9 +21,28 @@ public class queryPC {
     @CrossOrigin(origins = "*")
     @ResponseBody
     public ResponseEntity getAllPc(@RequestBody String s) {
+        System.out.println(s);
+        List<Personal_PC> ret = null;
+        String retString = "";
+        if (s.compareTo("All") == 0) {
+            ret = pcHandler.findAllNames();
 
-        List<Personal_PC> ret = pcHandler.getPCbyName(s);
+            for (Personal_PC pc : ret) {
+                retString += pc.getName() + ", ";
+            }
+        }
+        else {
+            ret = pcHandler.getPCbyName(s);
+            if (ret.isEmpty()) {
+                return ResponseEntity.ok("No PC's with this name.");
+            }
+            else {
+                for (Personal_PC pc : ret) {
+                    retString += pc.getName() + ", ";
+                }
+            }
+        }
 
-        return ResponseEntity.ok(ret);
+        return ResponseEntity.ok(retString);
     }
 }

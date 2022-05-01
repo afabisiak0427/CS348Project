@@ -18,4 +18,6 @@ public class Personal_PCDataHandler {
     public List<Personal_PC> getPCbyName(String name) {
         return personalRepository.findPersonal_PCByName(name);
     }
+
+    public List<Personal_PC> findAllNames() { return personalRepository.findAll(); }
 }

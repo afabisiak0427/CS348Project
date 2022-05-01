@@ -106,6 +106,40 @@ public class MainFrame extends javax.swing.JFrame {
 
         pcOutputTextArea.setColumns(20);
         pcOutputTextArea.setRows(5);
+
+        String[] lines = null;
+
+        try {
+            URL url = new URL("http://localhost:8080/queryPC");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setDoOutput(true);
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setUseCaches(false);
+
+            System.out.println("I am here");
+
+            try (DataOutputStream dos = new DataOutputStream(conn.getOutputStream())) {
+                dos.writeBytes("All");
+            }
+
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    lines = line.split(", ");
+                    System.out.println(line);
+                }
+            }
+        } catch (MalformedURLException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        for (String s : lines) {
+            pcOutputTextArea.append(s);
+        }
+
         jScrollPane1.setViewportView(pcOutputTextArea);
 
         newPCButton.setText("Add New Personal Computer");
@@ -315,6 +349,12 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         String text = pcTextField.getText();
 
+        if (text.length() == 0) {
+            text = "All";
+        }
+
+        String[] lines = null;
+
         try {
             URL url = new URL("http://localhost:8080/queryPC");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -331,12 +371,18 @@ public class MainFrame extends javax.swing.JFrame {
                 String line;
                 while ((line = br.readLine()) != null) {
                     System.out.println(line);
+                    lines = line.split(", ");
                 }
             }
         } catch (MalformedURLException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        }
+        this.pcOutputTextArea.setText("");
+
+        for (String s : lines) {
+            this.pcOutputTextArea.append(s);
         }
 
     }//GEN-LAST:event_searchButtonActionPerformed

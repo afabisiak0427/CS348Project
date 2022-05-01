@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface PersonalRepository extends JpaRepository<Personal_PC, Integer> {
     List<Personal_PC> findPersonal_PCByName(String name);
+    List<Personal_PC> findAll();
 }
