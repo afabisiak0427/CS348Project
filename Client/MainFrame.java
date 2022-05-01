@@ -311,6 +311,12 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         String text = pcTextField.getText();
 
+        if (text.length() == 0) {
+            text = "All";
+        }
+
+        String[] lines = null;
+
         try {
             URL url = new URL("http://localhost:8080/queryPC");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -327,12 +333,18 @@ public class MainFrame extends javax.swing.JFrame {
                 String line;
                 while ((line = br.readLine()) != null) {
                     System.out.println(line);
+                    lines = line.split(", ");
                 }
             }
         } catch (MalformedURLException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        }
+        this.pcOutputTextArea.setText("");
+
+        for (String s : lines) {
+            this.pcOutputTextArea.append(s);
         }
 
     }//GEN-LAST:event_searchButtonActionPerformed
