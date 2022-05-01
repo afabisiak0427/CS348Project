@@ -394,6 +394,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void newPCButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        // here
     }
 
     /**
