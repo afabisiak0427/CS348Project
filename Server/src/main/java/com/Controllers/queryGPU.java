@@ -48,9 +48,8 @@ public class queryGPU {
         }
 
         for (GPU c : gpuList) {
-            ret += c.getName() + ", " + brandHandler.getById(c.getBrand_id()).getName() + ", " +
-                    c.getMemory() + ", " + c.getCores_number() + ", " + c.getMemory() + ", " +
-                    c.getPrice() + ";";
+            ret += c.getName() + ", " + brandHandler.getById(c.getBrand_id()).getName() + ", " + c.getCores_number() +
+                     ", " + c.getMemory() + ", " + c.getPrice() + ";";
         }
 
         return ResponseEntity.ok(ret.toString());

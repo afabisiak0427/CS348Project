@@ -15,5 +15,6 @@ public interface GPURepository extends JpaRepository<GPU, Integer> {
     List<GPU> findAll();
     List<GPU> findGPUSByName(String name);
     Optional<GPU> findById(Integer id);
+    List<GPU> findGPUByNameAndMemoryAndCoresNumberAndPrice(String name, int memory, int cores_number, int price);
 }
 

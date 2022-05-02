@@ -22,4 +22,7 @@ public class GPUDataHandler {
     }
     public List<GPU> findGPU(String name) { return gpuRepository.findGPUSByName(name); }
     public Optional<GPU> findById(Integer id) { return gpuRepository.findById(id); }
+    public List<GPU> findGPUByEvery( String name, int cores_number, int memory, int price) {
+        return gpuRepository.findGPUByNameAndMemoryAndCoresNumberAndPrice(name, memory, cores_number, price);
+    }
 }

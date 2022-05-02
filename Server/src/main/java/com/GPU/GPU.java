@@ -12,8 +12,8 @@ public class GPU {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
-    private Integer brand_id;
-    private int cores_number;
+    private Integer brandId;
+    private int coresNumber;
     private int memory;
     private int price;
 
@@ -34,7 +34,7 @@ public class GPU {
     }
 
     public int getCores_number() {
-        return cores_number;
+        return coresNumber;
     }
 
     public void setCores_number(int cores_number) {
@@ -58,7 +58,7 @@ public class GPU {
     }
 
     public Integer getBrand_id() {
-        return brand_id;
+        return brandId;
     }
 
     public void setBrand_id(Integer brand_id) {
