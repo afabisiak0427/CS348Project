@@ -13,10 +13,17 @@ import java.awt.event.WindowEvent;
  */
 public class ram_lookup extends javax.swing.JFrame {
 
+    private String[][] names;
+
     /**
      * Creates new form ram_lookup
      */
     public ram_lookup() {
+        initComponents();
+    }
+
+    public ram_lookup(String[][] data) {
+        this.names = data;
         initComponents();
     }
     
@@ -57,14 +64,9 @@ public class ram_lookup extends javax.swing.JFrame {
 
         ramTable.setAutoCreateRowSorter(true);
         ramTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
+            this.names,
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Name", "Brand", "Memory", "# Sticks", "Speed", "Price"
             }
         ));
         jScrollPane1.setViewportView(ramTable);

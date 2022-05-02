@@ -319,8 +319,42 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void ramButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ramButtonActionPerformed
         // TODO add your handling code here:
+        String[] lines = null;
+        try {
+            URL url = new URL("http://localhost:8080/queryRAM");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setDoOutput(true);
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setUseCaches(false);
+
+            try (DataOutputStream dos = new DataOutputStream(conn.getOutputStream())) {
+                dos.writeBytes("All");
+            }
+
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    lines = line.split(";");
+                }
+            }
+        } catch (MalformedURLException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        int size = lines.length;
+
+        String[][] result = new String[size][];
+        int count = 0;
+        for (String st : lines) {
+            result[count] = st.split(",");
+            ++count;
+        }
+
         close();
-        ram_lookup newPart = new ram_lookup();
+        ram_lookup newPart = new ram_lookup(result);
         newPart.setVisible(true);
     }//GEN-LAST:event_ramButtonActionPerformed
 
