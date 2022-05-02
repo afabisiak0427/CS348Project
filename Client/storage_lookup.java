@@ -13,10 +13,16 @@ import java.awt.event.WindowEvent;
  */
 public class storage_lookup extends javax.swing.JFrame {
 
+    private String[][] names;
     /**
      * Creates new form storage_lookup
      */
     public storage_lookup() {
+        initComponents();
+    }
+
+    public storage_lookup(String[][] names) {
+        this.names = names;
         initComponents();
     }
     
@@ -58,14 +64,9 @@ public class storage_lookup extends javax.swing.JFrame {
 
         storageTable.setAutoCreateRowSorter(true);
         storageTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
+            this.names,
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Name", "Brand", "Type", "Size (gb)", "Price ($)"
             }
         ));
         jScrollPane1.setViewportView(storageTable);
