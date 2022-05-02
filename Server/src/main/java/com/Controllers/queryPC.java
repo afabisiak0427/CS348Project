@@ -24,11 +24,17 @@ public class queryPC {
         System.out.println(s);
         List<Personal_PC> ret = null;
         String retString = "";
+
         if (s.compareTo("All") == 0) {
             ret = pcHandler.findAllNames();
 
-            for (Personal_PC pc : ret) {
-                retString += pc.getName() + ", ";
+            if (ret.isEmpty()) {
+                return ResponseEntity.ok("No PC's Created.");
+            }
+            else {
+                for (Personal_PC pc : ret) {
+                    retString += pc.getName() + ", ";
+                }
             }
         }
         else {

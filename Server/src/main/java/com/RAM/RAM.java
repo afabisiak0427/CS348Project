@@ -11,12 +11,12 @@ public class RAM {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String Name;
-    private Integer Brand_id;
-    private int Memory_amt;
-    private int Number_of_sticks;
-    private int Speed;
-    private int Price;
+    private String name;
+    private Integer brand_id;
+    private int memory_amt;
+    private int number_of_sticks;
+    private int speed;
+    private int price;
 
     public Integer getId() {
         return id;
@@ -27,50 +27,50 @@ public class RAM {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public Integer getBrand_id() {
-        return Brand_id;
+        return brand_id;
     }
 
     public void setBrand_id(Integer brand_id) {
-        Brand_id = brand_id;
+        this.brand_id = brand_id;
     }
 
     public int getMemory_amt() {
-        return Memory_amt;
+        return memory_amt;
     }
 
     public void setMemory_amt(int memory_amt) {
-        Memory_amt = memory_amt;
+        this.memory_amt = memory_amt;
     }
 
     public int getNumber_of_sticks() {
-        return Number_of_sticks;
+        return number_of_sticks;
     }
 
     public void setNumber_of_sticks(int number_of_sticks) {
-        Number_of_sticks = number_of_sticks;
+        this.number_of_sticks = number_of_sticks;
     }
 
     public int getSpeed() {
-        return Speed;
+        return speed;
     }
 
     public void setSpeed(int speed) {
-        Speed = speed;
+        this.speed = speed;
     }
 
     public int getPrice() {
-        return Price;
+        return price;
     }
 
     public void setPrice(int price) {
-        Price = price;
+        this.price = price;
     }
 }
