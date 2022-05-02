@@ -43,6 +43,7 @@ public class cpu_lookup extends javax.swing.JFrame {
         cpuTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("CPU Parts");
 
         prevButton.setText("Previous Tab");
         prevButton.addActionListener(new java.awt.event.ActionListener() {
