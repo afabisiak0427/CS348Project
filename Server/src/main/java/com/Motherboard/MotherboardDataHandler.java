@@ -3,6 +3,7 @@ import com.CPU.CPU;
 import com.CPU.CPURepository;
 import com.GPU.GPU;
 import com.GPU.GPURepository;
+import com.RAM.RAM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
@@ -23,4 +24,8 @@ public class MotherboardDataHandler {
     }
     public List<Motherboard> findMotherboard(String name) { return motherboardRepository.findMotherboardByName(name); }
     public Optional<Motherboard> findByID(Integer id) { return motherboardRepository.findById(id); }
+    public List<Motherboard> findMotherboardByEvery(String name, String size, int pciSlots,  String CPUGeneration, int price) {
+        return motherboardRepository.findMotherboardByNameAndSizeAndPciSlotsAndCPUGenerationAndPrice(name, size,
+                pciSlots, CPUGeneration, price);
+    }
 }

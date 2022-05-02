@@ -31,10 +31,7 @@ public class addGPU {
         String[] parse = s.split("; ");
 
         String pc = parse[0];
-        System.out.println("SSSSSSSSSS"+pc);
         String[] gpuData = parse[1].split(", ");
-        System.out.println(Arrays.toString(parse));
-        System.out.println(Arrays.toString(gpuData));
         String name = gpuData[0];
         int cores_number = Integer.parseInt(gpuData[2].strip());
         int memory = Integer.parseInt(gpuData[3].strip());
@@ -42,7 +39,6 @@ public class addGPU {
 
         List<GPU> newGPU = gpuHandler.findGPUByEvery(name, cores_number, memory, price);
 
-        System.out.println(newGPU);
         Integer newGPUId = newGPU.get(0).getId();
 
         List<Personal_PC> listPC = pcHandler.getPCbyName(pc);

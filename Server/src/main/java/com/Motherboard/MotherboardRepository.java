@@ -15,4 +15,6 @@ public interface MotherboardRepository extends JpaRepository<Motherboard, Intege
     List<Motherboard> findAll();
     List<Motherboard> findMotherboardByName(String name);
     Optional<Motherboard> findById(Integer id);
+    List<Motherboard> findMotherboardByNameAndSizeAndPciSlotsAndCPUGenerationAndPrice(
+            String name, String size, int pciSlots, String CPUGeneration, int price);
 }
