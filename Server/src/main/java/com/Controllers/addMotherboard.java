@@ -31,7 +31,7 @@ public class addMotherboard {
 
         String pc = parse[0];
         String[] motherboardData = parse[1].split(", ");
-        System.out.println(Arrays.toString(motherboardData));
+
         String name = motherboardData[0];
         String size = motherboardData[2];
         int pciSlots = Integer.parseInt(motherboardData[5].strip());

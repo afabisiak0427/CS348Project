@@ -33,8 +33,7 @@ public class addPSU {
         String pc = parse[0];
 
         String[] psuData = parse[1].split(", ");
-        System.out.println(Arrays.toString(parse));
-        System.out.println(Arrays.toString(psuData));
+
         String name = psuData[0];
         int watt = Integer.parseInt(psuData[2].strip());
         String color = psuData[3];

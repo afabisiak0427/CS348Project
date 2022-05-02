@@ -12,7 +12,7 @@ public class Storage {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
-    private Integer brand_id;
+    private Integer brandId;
     private String type;
     private int size;
     private int price;
@@ -34,11 +34,11 @@ public class Storage {
     }
 
     public Integer getBrand_id() {
-        return brand_id;
+        return brandId;
     }
 
     public void setBrand_id(Integer brand_id) {
-        this.brand_id = brand_id;
+        this.brandId = brand_id;
     }
 
     public String getType() {
