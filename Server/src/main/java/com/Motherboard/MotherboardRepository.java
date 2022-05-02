@@ -8,9 +8,11 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface MotherboardRepository extends JpaRepository<Motherboard, Integer> {
     List<Motherboard> findAll();
-    List<Motherboard> findCPUSByName(String name);
+    List<Motherboard> findMotherboardByName(String name);
+    Optional<Motherboard> findById(Integer id);
 }

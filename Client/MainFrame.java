@@ -1,5 +1,6 @@
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.swing.*;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
@@ -13,8 +14,15 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 
 public class MainFrame extends javax.swing.JFrame {
+    private String pc;
 
     public MainFrame() {
+        this.pc = "";
+        initComponents();
+    }
+
+    public MainFrame(String pc) {
+        this.pc = pc;
         initComponents();
     }
     
@@ -48,6 +56,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Purdue Part Picker");
+
+        if (this.pc.compareTo("") != 0) {
+            this.pcTextField.setText(this.pc);
+        }
 
         cpuButton.setText("CPU Parts");
         cpuButton.addActionListener(new java.awt.event.ActionListener() {
@@ -122,8 +134,6 @@ public class MainFrame extends javax.swing.JFrame {
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setUseCaches(false);
 
-            System.out.println("I am here");
-
             try (DataOutputStream dos = new DataOutputStream(conn.getOutputStream())) {
                 dos.writeBytes("All");
             }
@@ -135,6 +145,7 @@ public class MainFrame extends javax.swing.JFrame {
                     System.out.println(line);
                 }
             }
+            conn.disconnect();
         } catch (MalformedURLException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
@@ -142,7 +153,7 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         for (String s : lines) {
-            pcOutputTextArea.append(s);
+            pcOutputTextArea.append(s + "\n");
         }
 
         jScrollPane1.setViewportView(pcOutputTextArea);
@@ -158,6 +169,40 @@ public class MainFrame extends javax.swing.JFrame {
 
         currentPCTextArea.setColumns(20);
         currentPCTextArea.setRows(5);
+
+        if (this.pc.compareTo("") != 0) {
+            String[] data = null;
+            try {
+                URL url = new URL("http://localhost:8080/queryWholePC");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setDoOutput(true);
+                conn.setRequestProperty("Content-Type", "application/json");
+                conn.setUseCaches(false);
+
+                try (DataOutputStream dos = new DataOutputStream(conn.getOutputStream())) {
+                    dos.writeBytes(this.pc);
+                }
+
+                try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        data = line.split(", ");
+                    }
+                }
+                conn.disconnect();
+            } catch (MalformedURLException e) {
+                System.out.println(e.getMessage());
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+
+            for (String s : data) {
+                System.out.println(s);
+                this.currentPCTextArea.append(s + "\n");
+            }
+        }
+
         jScrollPane2.setViewportView(currentPCTextArea);
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
@@ -277,6 +322,7 @@ public class MainFrame extends javax.swing.JFrame {
                     lines = line.split(";");
                 }
             }
+            conn.disconnect();
         } catch (MalformedURLException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
@@ -297,7 +343,7 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         close();
-        cpu_lookup newPart = new cpu_lookup(result);
+        cpu_lookup newPart = new cpu_lookup(result, this.pc);
         newPart.setVisible(true);
     }//GEN-LAST:event_cpuButtonActionPerformed
 
@@ -322,6 +368,7 @@ public class MainFrame extends javax.swing.JFrame {
                     lines = line.split(";");
                 }
             }
+            conn.disconnect();
         } catch (MalformedURLException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
@@ -342,7 +389,7 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         close();
-        gpu_lookup newPart = new gpu_lookup(result);
+        gpu_lookup newPart = new gpu_lookup(result, this.pc);
         newPart.setVisible(true);
     }//GEN-LAST:event_gpuButtonActionPerformed
 
@@ -367,6 +414,7 @@ public class MainFrame extends javax.swing.JFrame {
                     lines = line.split(";");
                 }
             }
+            conn.disconnect();
         } catch (MalformedURLException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
@@ -383,7 +431,7 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         close();
-        ram_lookup newPart = new ram_lookup(result);
+        ram_lookup newPart = new ram_lookup(result, this.pc);
         newPart.setVisible(true);
     }//GEN-LAST:event_ramButtonActionPerformed
 
@@ -408,6 +456,7 @@ public class MainFrame extends javax.swing.JFrame {
                     lines = line.split(";");
                 }
             }
+            conn.disconnect();
         } catch (MalformedURLException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
@@ -427,7 +476,7 @@ public class MainFrame extends javax.swing.JFrame {
             ++count;
         }
         close();
-        motherboard_lookup newPart = new motherboard_lookup(result);
+        motherboard_lookup newPart = new motherboard_lookup(result, this.pc);
         newPart.setVisible(true);
     }//GEN-LAST:event_motherboardButtonActionPerformed
 
@@ -452,6 +501,7 @@ public class MainFrame extends javax.swing.JFrame {
                     lines = line.split(";");
                 }
             }
+            conn.disconnect();
         } catch (MalformedURLException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
@@ -467,7 +517,7 @@ public class MainFrame extends javax.swing.JFrame {
             ++count;
         }
         close();
-        storage_lookup newPart = new storage_lookup(result);
+        storage_lookup newPart = new storage_lookup(result, this.pc);
         newPart.setVisible(true);
     }//GEN-LAST:event_storageButtonActionPerformed
 
@@ -492,6 +542,7 @@ public class MainFrame extends javax.swing.JFrame {
                     lines = line.split(";");
                 }
             }
+            conn.disconnect();
         } catch (MalformedURLException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
@@ -508,16 +559,49 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         close();
-        psu_lookup newPart = new psu_lookup(result);
+        psu_lookup newPart = new psu_lookup(result, this.pc);
         newPart.setVisible(true);
     }//GEN-LAST:event_psuButtonActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
         String text = pcTextField.getText();
+        this.pc = pcTextField.getText();
 
         if (text.length() == 0) {
             text = "All";
+        }
+        else {
+            String[] data = null;
+            try {
+                URL url = new URL("http://localhost:8080/queryWholePC");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setDoOutput(true);
+                conn.setRequestProperty("Content-Type", "application/json");
+                conn.setUseCaches(false);
+
+                try (DataOutputStream dos = new DataOutputStream(conn.getOutputStream())) {
+                    dos.writeBytes(text);
+                }
+
+                try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        data = line.split(", ");
+                    }
+                }
+                conn.disconnect();
+            } catch (MalformedURLException e) {
+                System.out.println(e.getMessage());
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+
+            for (String s : data) {
+                System.out.println(s);
+                this.currentPCTextArea.append(s + "\n");
+            }
         }
 
         String[] lines = null;
@@ -541,6 +625,7 @@ public class MainFrame extends javax.swing.JFrame {
                     lines = line.split(", ");
                 }
             }
+            conn.disconnect();
         } catch (MalformedURLException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
@@ -549,7 +634,7 @@ public class MainFrame extends javax.swing.JFrame {
         this.pcOutputTextArea.setText("");
 
         for (String s : lines) {
-            this.pcOutputTextArea.append(s);
+            this.pcOutputTextArea.append(s + "\n");
         }
 
     }//GEN-LAST:event_searchButtonActionPerformed
@@ -561,7 +646,54 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void newPCButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        // here
+        String text = this.pcTextField.getText();
+
+        if (text.length() == 0) {
+            JOptionPane.showMessageDialog(this, "Please enter a PC name.", "PC Error", JOptionPane.ERROR_MESSAGE);
+            close();
+            MainFrame newMain = new MainFrame();
+            newMain.setVisible(true);
+            return;
+        }
+
+        String ret = null;
+        try {
+            URL url = new URL("http://localhost:8080/addPC");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setDoOutput(true);
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setUseCaches(false);
+
+            try (DataOutputStream dos = new DataOutputStream(conn.getOutputStream())) {
+                dos.writeBytes(text);
+            }
+
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    System.out.println("Line: " + line);
+                    ret = line;
+                }
+            }
+            conn.disconnect();
+            System.out.println("Disconnected");
+        } catch (MalformedURLException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        if (ret.contains("Error")) {
+            JOptionPane.showMessageDialog(this, ret, "PC Error", JOptionPane.ERROR_MESSAGE);
+            close();
+            MainFrame newMain = new MainFrame();
+            newMain.setVisible(true);
+            return;
+        }
+        close();
+        MainFrame newMain = new MainFrame(text);
+        newMain.setVisible(true);
     }
 
     /**

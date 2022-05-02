@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MotherboardDataHandler {
@@ -20,5 +21,6 @@ public class MotherboardDataHandler {
     public List<Motherboard> findAll() {
         return motherboardRepository.findAll();
     }
-    public List<Motherboard> findCPU(String name) { return motherboardRepository.findCPUSByName(name); }
+    public List<Motherboard> findMotherboard(String name) { return motherboardRepository.findMotherboardByName(name); }
+    public Optional<Motherboard> findByID(Integer id) { return motherboardRepository.findById(id); }
 }

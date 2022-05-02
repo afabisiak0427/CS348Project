@@ -14,6 +14,7 @@ import java.awt.event.WindowEvent;
 public class storage_lookup extends javax.swing.JFrame {
 
     private String[][] names;
+    private String pc;
     /**
      * Creates new form storage_lookup
      */
@@ -21,8 +22,9 @@ public class storage_lookup extends javax.swing.JFrame {
         initComponents();
     }
 
-    public storage_lookup(String[][] names) {
+    public storage_lookup(String[][] names, String pc) {
         this.names = names;
+        this.pc = pc;
         initComponents();
     }
     

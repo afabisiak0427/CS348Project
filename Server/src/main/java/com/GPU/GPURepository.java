@@ -8,10 +8,12 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface GPURepository extends JpaRepository<GPU, Integer> {
     List<GPU> findAll();
     List<GPU> findGPUSByName(String name);
+    Optional<GPU> findById(Integer id);
 }
 

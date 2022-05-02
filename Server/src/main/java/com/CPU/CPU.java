@@ -14,60 +14,63 @@ public class CPU {
     private String name;
     private Integer brand_id;
     private int generation;
-    private int cores_number;
-    private int threads_number;
+    private int coresNumber;
+    private int threadsNumber;
     private int price;
 
-    public Integer getId() { return id; }
+    public Integer getId() {
+        return id;
+    }
 
-    public void setId(Integer id) { this.id = id; }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Integer getBrand_id() {
         return brand_id;
     }
 
-    public void setBrand(Integer brand_id) { this.brand_id = brand_id; }
+    public void setBrand_id(Integer brand_id) {
+        this.brand_id = brand_id;
+    }
 
     public int getGeneration() {
         return generation;
     }
 
-    public void setGeneration(Integer gen) { this.generation = gen; }
-
-    public int getCores_number() {
-        return cores_number;
+    public void setGeneration(int generation) {
+        this.generation = generation;
     }
 
-    public void setCores_number(int cores) { this.cores_number = cores; }
-
-    public int getThreads_number() {
-        return threads_number;
+    public int getCoresNumber() {
+        return coresNumber;
     }
 
-    public void setThreads_number(int threads) { this.threads_number = threads; }
+    public void setCoresNumber(int coresNumber) {
+        this.coresNumber = coresNumber;
+    }
+
+    public int getThreadsNumber() {
+        return threadsNumber;
+    }
+
+    public void setThreadsNumber(int threadsNumber) {
+        this.threadsNumber = threadsNumber;
+    }
 
     public int getPrice() {
         return price;
     }
 
-    public void setPrice(int price) { this.price = price; }
-
-    @Override
-    public String toString() {
-        return "CPU{" +
-                "id=" + id +
-                ", Name='" + name + '\'' +
-                ", Brand_id=" + brand_id +
-                ", Generation=" + generation +
-                ", Cores_number=" + cores_number +
-                ", Threads_number=" + threads_number +
-                ", Price=" + price +
-                '}';
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

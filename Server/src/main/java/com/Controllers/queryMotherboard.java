@@ -41,7 +41,7 @@ public class queryMotherboard {
             motherboardList = motherboardHandler.findAll();
         }
         else {
-            motherboardList = motherboardHandler.findCPU(s);
+            motherboardList = motherboardHandler.findMotherboard(s);
         }
 
         if (motherboardList.size() == 0) {

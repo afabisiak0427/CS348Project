@@ -14,6 +14,7 @@ import java.awt.event.WindowEvent;
 public class ram_lookup extends javax.swing.JFrame {
 
     private String[][] names;
+    private String pc;
 
     /**
      * Creates new form ram_lookup
@@ -22,8 +23,9 @@ public class ram_lookup extends javax.swing.JFrame {
         initComponents();
     }
 
-    public ram_lookup(String[][] data) {
+    public ram_lookup(String[][] data, String pc) {
         this.names = data;
+        this.pc = pc;
         initComponents();
     }
     

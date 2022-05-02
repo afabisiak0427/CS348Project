@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GPUDataHandler {
@@ -20,4 +21,5 @@ public class GPUDataHandler {
         return gpuRepository.findAll();
     }
     public List<GPU> findGPU(String name) { return gpuRepository.findGPUSByName(name); }
+    public Optional<GPU> findById(Integer id) { return gpuRepository.findById(id); }
 }

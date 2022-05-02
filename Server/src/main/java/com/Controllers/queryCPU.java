@@ -49,7 +49,7 @@ public class queryCPU {
 
         for (CPU c : cpuList) {
             ret += c.getName() + ", " + brandHandler.getById(c.getBrand_id()).getName() + ", " +
-                    c.getGeneration() + ", " + c.getCores_number() + ", " + c.getThreads_number() + ", " +
+                    c.getGeneration() + ", " + c.getCoresNumber() + ", " + c.getThreadsNumber() + ", " +
                     c.getPrice() + ";";
         }
 

@@ -1,6 +1,14 @@
 
+import javax.swing.*;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 /*
@@ -14,9 +22,11 @@ import java.util.ArrayList;
  */
 public class cpu_lookup extends javax.swing.JFrame {
     private String[][] names;
+    private String pc;
 
-    public cpu_lookup(String[][] names) {
+    public cpu_lookup(String[][] names, String pc) {
         this.names = names;
+        this.pc = pc;
         initComponents();
     }
 
@@ -53,6 +63,9 @@ public class cpu_lookup extends javax.swing.JFrame {
         });
 
         addButton.setText("Add Part To PC");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) { addButtonActionPerformed(evt); }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -102,6 +115,58 @@ public class cpu_lookup extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        if (this.pc.compareTo("") == 0 || this.pc.compareTo("No PC's Created.") == 0) {
+            JOptionPane.showMessageDialog(this, "Please choose a PC first.", "PC Error", JOptionPane.ERROR_MESSAGE);
+            close();
+            MainFrame newMain = new MainFrame();
+            newMain.setVisible(true);
+        } else {
+            String[] lines = null;
+
+            String[] row = new String[this.cpuTable.getColumnCount()];
+
+            for (int x = 0; x < this.cpuTable.getColumnCount(); x++) {
+                row[x] = "" + this.cpuTable.getModel().getValueAt(this.cpuTable.getSelectedRow(), x);
+            }
+
+            String ret = "";
+
+            for (String s : row) {
+                ret += s + ",";
+            }
+
+            try {
+                URL url = new URL("http://localhost:8080/addCPU");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setDoOutput(true);
+                conn.setRequestProperty("Content-Type", "application/json");
+                conn.setUseCaches(false);
+
+                try (DataOutputStream dos = new DataOutputStream(conn.getOutputStream())) {
+                    dos.writeBytes(this.pc + "; " + ret);
+                }
+
+                try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        lines = line.split(";");
+                    }
+                }
+                conn.disconnect();
+            } catch (MalformedURLException e) {
+                System.out.println(e.getMessage());
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+
+            close();
+            MainFrame newMain = new MainFrame(this.pc);
+            newMain.setVisible(true);
+        }
+    }
 
     private void prevButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevButtonActionPerformed
         // TODO add your handling code here:

@@ -13,12 +13,14 @@ import java.awt.event.WindowEvent;
  */
 public class gpu_lookup extends javax.swing.JFrame {
     private String[][] names;
+    private String pc;
 
     /**
      * Creates new form gpu_lookup
      */
-    public gpu_lookup(String[][] names) {
+    public gpu_lookup(String[][] names, String pc) {
         this.names = names;
+        this.pc = pc;
         initComponents();
     }
 

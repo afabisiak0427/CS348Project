@@ -13,4 +13,7 @@ import java.util.Optional;
 public interface CPURepository extends JpaRepository<CPU, Integer> {
     List<CPU> findAll();
     List<CPU> findCPUSByName(String name);
+    Optional<CPU> findById(Integer id);
+    List<CPU> findCPUByNameAndGenerationAndCoresNumberAndThreadsNumberAndPrice(String name, int gen, int cores,
+                                                                                            int threads, int price);
 }

@@ -11,9 +11,9 @@ public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String Name;
-    private String Products;
-    private int Rating;
+    private String name;
+    private String products;
+    private int rating;
 
     public Integer getId() {
         return id;
@@ -24,26 +24,26 @@ public class Brand {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getProducts() {
-        return Products;
+        return products;
     }
 
     public void setProducts(String products) {
-        Products = products;
+        this.products = products;
     }
 
     public int getRating() {
-        return Rating;
+        return rating;
     }
 
     public void setRating(int rating) {
-        Rating = rating;
+        this.rating = rating;
     }
 }
