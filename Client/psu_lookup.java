@@ -13,10 +13,16 @@ import java.awt.event.WindowEvent;
  */
 public class psu_lookup extends javax.swing.JFrame {
 
+    private String[][] names;
     /**
      * Creates new form psu_lookup
      */
     public psu_lookup() {
+        initComponents();
+    }
+
+    public psu_lookup(String[][] names) {
+        this.names = names;
         initComponents();
     }
     
@@ -58,14 +64,9 @@ public class psu_lookup extends javax.swing.JFrame {
 
         psuTable.setAutoCreateRowSorter(true);
         psuTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
+            this.names,
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Name", "Brand", "Watts", "Color", "Price ($)"
             }
         ));
         jScrollPane1.setViewportView(psuTable);
