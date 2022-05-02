@@ -34,8 +34,6 @@ public class addRAM {
         String pc = parse[0];
         System.out.println("SSSSSSSSSS"+pc);
         String[] ramData = parse[1].split(", ");
-        System.out.println(Arrays.toString(parse));
-        System.out.println(Arrays.toString(ramData));
         String name = ramData[0];
         int memory = Integer.parseInt(ramData[2].strip());
         int Sticks = Integer.parseInt(ramData[3].strip());
