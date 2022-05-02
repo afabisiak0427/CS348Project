@@ -1,6 +1,6 @@
-package com.GPU;
-
+package com.Motherboard;
 import com.CPU.CPU;
+import com.GPU.GPU;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.*;
@@ -10,8 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface GPURepository extends JpaRepository<GPU, Integer> {
-    List<GPU> findAll();
-    List<GPU> findGPUSByName(String name);
+public interface MotherboardRepository extends JpaRepository<Motherboard, Integer> {
+    List<Motherboard> findAll();
+    List<Motherboard> findCPUSByName(String name);
 }
-

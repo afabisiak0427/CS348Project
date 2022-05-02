@@ -11,13 +11,13 @@ public class Motherboard {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String Name;
-    private Integer Brand_id;
-    private int Size;
-    private int Pci_slots;
+    private String name;
+    private Integer brand_id;
+    private String size;
+    private int pci_slots;
     private int RAM_slots;
     private String CPU_Generation;
-    private int Price;
+    private int price;
 
     public Integer getId() {
         return id;
@@ -28,27 +28,27 @@ public class Motherboard {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        name = name;
     }
 
     public Integer getBrand_id() {
-        return Brand_id;
+        return brand_id;
     }
 
     public void setBrand_id(Integer brand_id) {
-        Brand_id = brand_id;
+        brand_id = brand_id;
     }
 
-    public int getSize() {
-        return Size;
+    public String getSize() {
+        return size;
     }
 
     public void setSize(int size) {
-        Size = size;
+        size = size;
     }
 
     public int getRAM_slots() {
@@ -68,18 +68,18 @@ public class Motherboard {
     }
 
     public int getPrice() {
-        return Price;
+        return price;
     }
 
     public void setPrice(int price) {
-        Price = price;
+        price = price;
     }
 
     public int getPci_slots() {
-        return Pci_slots;
+        return pci_slots;
     }
 
     public void setPci_slots(int pci_slots) {
-        Pci_slots = pci_slots;
+        pci_slots = pci_slots;
     }
 }

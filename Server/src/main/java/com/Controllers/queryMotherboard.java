@@ -3,8 +3,8 @@ import com.Brand.BrandDataHandler;
 import com.CPU.CPU;
 import com.CPU.CPUDataHandler;
 import com.CPU.CPURepository;
-import com.GPU.GPU;
-import com.GPU.GPUDataHandler;
+import com.Motherboard.Motherboard;
+import com.Motherboard.MotherboardDataHandler;
 import com.Personal_PC.Personal_PC;
 import com.Personal_PC.Personal_PCDataHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +17,12 @@ import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Controller
-@RequestMapping("/queryGPU")
-public class queryGPU {
+@RequestMapping("/queryMotherboard")
+public class queryMotherboard {
     @Autowired
-    GPUDataHandler gpuHandler;
+    MotherboardDataHandler motherboardHandler;
     @Autowired
     BrandDataHandler brandHandler;
     @Autowired
@@ -32,25 +33,25 @@ public class queryGPU {
     @ResponseBody
     public ResponseEntity getAllCPUs(@RequestBody String s) {
         String ret = "";
-        List<GPU> gpuList = null;
+        List<Motherboard> motherboardList = null;
 
         System.out.println("Request: " + s);
 
         if (s.compareTo("All") == 0) {
-            gpuList = gpuHandler.findAll();
+            motherboardList = motherboardHandler.findAll();
         }
         else {
-            gpuList = gpuHandler.findGPU(s);
+            motherboardList = motherboardHandler.findCPU(s);
         }
 
-        if (gpuList.size() == 0) {
+        if (motherboardList.size() == 0) {
             return ResponseEntity.ok("Error: No CPUs could be found.");
         }
 
-        for (GPU c : gpuList) {
+        for (Motherboard c : motherboardList) {
             ret += c.getName() + ", " + brandHandler.getById(c.getBrand_id()).getName() + ", " +
-                    c.getMemory() + ", " + c.getCores_number() + ", " + c.getMemory() + ", " +
-                    c.getPrice() + ";";
+                    c.getSize() + ", " + c.getRAM_slots() + ", " + c.getCPU_Generation() + ", " +
+                    c.getPci_slots() + ", " + c.getPrice() + ";";
         }
 
         return ResponseEntity.ok(ret.toString());

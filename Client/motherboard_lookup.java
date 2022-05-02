@@ -12,13 +12,20 @@ import java.awt.event.WindowEvent;
  * @author glass
  */
 public class motherboard_lookup extends javax.swing.JFrame {
-
+    private String[][] names;
     /**
      * Creates new form motherboard_lookup
      */
+    public motherboard_lookup(String[][] names) {
+        this.names = names;
+        initComponents();
+    }
+
     public motherboard_lookup() {
         initComponents();
     }
+
+
 
     public void close() {
         WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
@@ -57,15 +64,10 @@ public class motherboard_lookup extends javax.swing.JFrame {
 
         motherboardTable.setAutoCreateRowSorter(true);
         motherboardTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
+                this.names,
+                new String [] {
+                        "Name", "Brand", "Size", "RAM Slots", "CPU_Gen", "Pci Slots", "Price ($)"
+                }
         ));
         jScrollPane1.setViewportView(motherboardTable);
 
